@@ -6,7 +6,7 @@ Pod::Spec.new do |s|
   s.summary  = 'Inexika-Custom-Controls'
   s.homepage = 'https://github.com/Inexika/Inexika-Custom-Controls'
   s.author   = { 'Leonty Derigalzov' => 'leontyd@gmail.com' }
-  s.source   = { :git => 'git@github.com:voxdei/Inexika-Custom-Controls.git' }
+  s.source   = { :git => 'git://github.com/Inexika/Inexika-Custom-Controls.git' }
 
   s.description  = 'a UIView subclass that customizes the appearance of UIPickerView and UIDatePicker views.'
 
