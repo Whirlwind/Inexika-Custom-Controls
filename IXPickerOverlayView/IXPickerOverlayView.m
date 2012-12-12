@@ -25,25 +25,43 @@
 @end
 
 @implementation IXPickerOverlayView
-@synthesize hostPickerView, textureLayer;
+@synthesize hostPickerView, textureLayer, bundleName;
 
 - (UIImage*)imageForLeftPane {
+    if (self.bundleName) {
+        [UIImage imageNamed:[NSString stringWithFormat:@"%@ixPickerOverlayLeftPane", self.bundleName]];
+    }
     return [UIImage imageNamed:@"ixPickerOverlayLeftPane"];
 }
 - (UIImage*)imageForRightPane {
+    if (self.bundleName) {
+        [UIImage imageNamed:[NSString stringWithFormat:@"%@ixPickerOverlayRightPane", self.bundleName]];
+    }
     return [UIImage imageNamed:@"ixPickerOverlayRightPane"];
 }
 - (UIImage*)imageForSectionWheel {
+    if (self.bundleName) {
+        [UIImage imageNamed:[NSString stringWithFormat:@"%@ixPickerOverlaySectionWheel", self.bundleName]];
+    }
     return [UIImage imageNamed:@"ixPickerOverlaySectionWheel"];
 }
 - (UIImage*)imageForSectionsSeparator {
+    if (self.bundleName) {
+        [UIImage imageNamed:[NSString stringWithFormat:@"%@ixPickerOverlaySectionsSeparator", self.bundleName]];
+    }
     return [UIImage imageNamed:@"ixPickerOverlaySectionsSeparator"];
 }
 - (UIImage*)imageForTexture {
-    return [UIImage imageNamed:@"ixPickerOverlayTexture"];    
+    if (self.bundleName) {
+        [UIImage imageNamed:[NSString stringWithFormat:@"%@ixPickerOverlayTexture", self.bundleName]];
+    }
+    return [UIImage imageNamed:@"ixPickerOverlayTexture"];
 }
 - (UIImage*)imageForGlass {
-    return [UIImage imageNamed:@"ixPickerOverlayGlass"];    
+    if (self.bundleName) {
+        [UIImage imageNamed:[NSString stringWithFormat:@"%@ixPickerOverlayGlass", self.bundleName]];
+    }
+    return [UIImage imageNamed:@"ixPickerOverlayGlass"];
 }
 
 + (UIPickerView*)findPickerInView:(UIView*)view {

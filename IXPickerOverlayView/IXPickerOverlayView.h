@@ -21,6 +21,7 @@
 
 @interface IXPickerOverlayView : UIView
 @property (strong, nonatomic) IBOutlet UIView* hostPickerView;
+@property (copy, nonatomic) NSString *bundleName;
 - (UIImage*)imageForLeftPane;
 - (UIImage*)imageForRightPane;
 - (UIImage*)imageForSectionWheel;
