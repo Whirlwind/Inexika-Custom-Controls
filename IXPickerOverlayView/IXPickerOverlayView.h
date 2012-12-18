@@ -19,6 +19,9 @@
 
 #import <UIKit/UIKit.h>
 
+#ifndef kIXPickerOverlayViewBundleName
+#   define kIXPickerOverlayViewBundleName @""
+#endif
 @interface IXPickerOverlayView : UIView
 @property (strong, nonatomic) IBOutlet UIView* hostPickerView;
 @property (copy, nonatomic) NSString *bundleName;

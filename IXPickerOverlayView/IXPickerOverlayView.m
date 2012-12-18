@@ -1,20 +1,20 @@
 //Created by Leonty Deriglazov & Vadim Yelagin
 //Copyright (C) 2012 Inexika, http://www.inexika.com
 //
-//Permission is hereby granted, free of charge, to any person obtaining a copy of this 
-//software and associated documentation files (the "Software"), to deal in the Software 
-//without restriction, including without limitation the rights to use, copy, modify, merge, 
-//publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons 
+//Permission is hereby granted, free of charge, to any person obtaining a copy of this
+//software and associated documentation files (the "Software"), to deal in the Software
+//without restriction, including without limitation the rights to use, copy, modify, merge,
+//publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons
 //to whom the Software is furnished to do so, subject to the following conditions:
 //
 //The above copyright notice and this permission notice shall be included in all copies or
 //substantial portions of the Software.
 //
-//THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, 
-//INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR 
-//PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE 
-//FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR 
-//OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER 
+//THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+//INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
+//PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE
+//FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+//OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 //DEALINGS IN THE SOFTWARE.
 
 #import "IXPickerOverlayView.h"
@@ -28,40 +28,34 @@
 @synthesize hostPickerView, textureLayer, bundleName;
 
 - (UIImage*)imageForLeftPane {
-    if (self.bundleName) {
-        return [UIImage imageNamed:[NSString stringWithFormat:@"%@ixPickerOverlayLeftPane", self.bundleName]];
-    }
-    return [UIImage imageNamed:@"ixPickerOverlayLeftPane"];
+    NSString *bundle = kIXPickerOverlayViewBundleName;
+    if (self.bundleName) bundle = self.bundleName;
+    return [UIImage imageNamed:[NSString stringWithFormat:@"%@ixPickerOverlayLeftPane", bundle]];
 }
 - (UIImage*)imageForRightPane {
-    if (self.bundleName) {
-        return [UIImage imageNamed:[NSString stringWithFormat:@"%@ixPickerOverlayRightPane", self.bundleName]];
-    }
-    return [UIImage imageNamed:@"ixPickerOverlayRightPane"];
+    NSString *bundle = kIXPickerOverlayViewBundleName;
+    if (self.bundleName) bundle = self.bundleName;
+    return [UIImage imageNamed:[NSString stringWithFormat:@"%@ixPickerOverlayRightPane", bundle]];
 }
 - (UIImage*)imageForSectionWheel {
-    if (self.bundleName) {
-        return [UIImage imageNamed:[NSString stringWithFormat:@"%@ixPickerOverlaySectionWheel", self.bundleName]];
-    }
-    return [UIImage imageNamed:@"ixPickerOverlaySectionWheel"];
+    NSString *bundle = kIXPickerOverlayViewBundleName;
+    if (self.bundleName) bundle = self.bundleName;
+    return [UIImage imageNamed:[NSString stringWithFormat:@"%@ixPickerOverlaySectionWheel", bundle]];
 }
 - (UIImage*)imageForSectionsSeparator {
-    if (self.bundleName) {
-        return [UIImage imageNamed:[NSString stringWithFormat:@"%@ixPickerOverlaySectionsSeparator", self.bundleName]];
-    }
-    return [UIImage imageNamed:@"ixPickerOverlaySectionsSeparator"];
+    NSString *bundle = kIXPickerOverlayViewBundleName;
+    if (self.bundleName) bundle = self.bundleName;
+    return [UIImage imageNamed:[NSString stringWithFormat:@"%@ixPickerOverlaySectionsSeparator", bundle]];
 }
 - (UIImage*)imageForTexture {
-    if (self.bundleName) {
-        return [UIImage imageNamed:[NSString stringWithFormat:@"%@ixPickerOverlayTexture", self.bundleName]];
-    }
-    return [UIImage imageNamed:@"ixPickerOverlayTexture"];
+    NSString *bundle = kIXPickerOverlayViewBundleName;
+    if (self.bundleName) bundle = self.bundleName;
+    return [UIImage imageNamed:[NSString stringWithFormat:@"%@ixPickerOverlayTexture", bundle]];
 }
 - (UIImage*)imageForGlass {
-    if (self.bundleName) {
-        return [UIImage imageNamed:[NSString stringWithFormat:@"%@ixPickerOverlayGlass", self.bundleName]];
-    }
-    return [UIImage imageNamed:@"ixPickerOverlayGlass"];
+    NSString *bundle = kIXPickerOverlayViewBundleName;
+    if (self.bundleName) bundle = self.bundleName;
+    return [UIImage imageNamed:[NSString stringWithFormat:@"%@ixPickerOverlayGlass", bundle]];
 }
 
 + (UIPickerView*)findPickerInView:(UIView*)view {
@@ -107,7 +101,7 @@
     if (n < 1)
         return;
     picker.showsSelectionIndicator = NO;
-    
+
     const CGFloat separatorWidth = 8.0f;
     const CGFloat sectionExceedWidth = -2.0f;
     CGFloat totalWidth = picker.bounds.size.width;
@@ -120,43 +114,43 @@
     CGFloat rightPaneWidth = panesWidth - leftPaneWidth;
     CGFloat totalHeight = picker.bounds.size.height;
     CGRect totalRect = CGRectMake(0, 0, totalWidth, totalHeight);
-    
+
     UIBezierPath* path = [UIBezierPath bezierPathWithRect:totalRect];
     UIEdgeInsets insets = UIEdgeInsetsMake(10.0f, leftPaneWidth, 10.0f, rightPaneWidth);
     [path appendPath:[UIBezierPath bezierPathWithRect:UIEdgeInsetsInsetRect(totalRect, insets)]];
     [path applyTransform:CGAffineTransformMakeScale(1, -1)];
     self.textureLayer.path = path.CGPath;
-    
+
     UIImageView* leftPane = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, leftPaneWidth, totalHeight)];
     leftPane.image = [self imageForLeftPane];
     leftPane.contentStretch = CGRectMake(0, 0, 0, 1);
     [self addSubview:leftPane];
-    
+
     UIImageView* rightPane = [[UIImageView alloc] initWithFrame:CGRectMake(totalWidth - rightPaneWidth, 0, rightPaneWidth, totalHeight)];
     rightPane.image = [self imageForRightPane];
     rightPane.contentStretch = CGRectMake(1, 0, 0, 1);
     [self addSubview:rightPane];
-    
+
     CGFloat x = leftPaneWidth;
     for (NSInteger i = 0;; i++) {
         CGFloat sectionWidth = [picker rowSizeForComponent:i].width + sectionExceedWidth;
-        
+
         UIImageView* sectionWheel = [[UIImageView alloc] initWithFrame:CGRectMake(x, 0, sectionWidth, totalHeight)];
         sectionWheel.image = [self imageForSectionWheel];
         sectionWheel.contentStretch = CGRectMake(0, 0.25f, 1, 0.5f);
         [self addSubview:sectionWheel];
         x += sectionWidth;
-        
+
         if (i == n - 1)
             break;
-        
+
         UIImageView* sectionsSeparator = [[UIImageView alloc] initWithFrame:CGRectMake(x, 0, separatorWidth, totalHeight)];
         sectionsSeparator.image = [self imageForSectionsSeparator];
         sectionsSeparator.contentStretch = CGRectMake(0, 0.25f, 1, 0.5f);
         [self addSubview:sectionsSeparator];
         x += separatorWidth;
     }
-    
+
     UIImage* glassImage = [self imageForGlass];
     if (glassImage != nil) {
         CGFloat glassHeight = glassImage.size.height;
