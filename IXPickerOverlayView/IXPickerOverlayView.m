@@ -132,6 +132,35 @@
     [self addSubview:rightPane];
 
     CGFloat x = leftPaneWidth;
+    
+    UIColor *topCornerColor;
+    UIColor *bottomCornerColor;
+    
+    if ([[UIScreen mainScreen] respondsToSelector:@selector(displayLinkWithTarget:selector:)] &&
+        ([UIScreen mainScreen].scale == 2.0)) {
+        topCornerColor = [UIColor colorWithRed:56.f/255 green:57.f/255 blue:60.f/255 alpha:1.0f];
+        bottomCornerColor = [UIColor colorWithRed:60.f/255 green:60.f/255 blue:71.f/255 alpha:1.0f];
+    } else {
+        topCornerColor = [UIColor colorWithRed:50.f/255 green:50.f/255 blue:56.f/255 alpha:1.0f];
+        bottomCornerColor = [UIColor colorWithRed:61.f/255 green:61.f/255 blue:71.f/255 alpha:1.0f];
+    }
+    
+    UIView *topLeftCorner = [[UIView alloc] initWithFrame:CGRectMake(x, 10, 3, .5)];
+    topLeftCorner.backgroundColor = topCornerColor;
+    [self addSubview:topLeftCorner];
+    
+    UIView *topRightCorner = [[UIView alloc] initWithFrame:CGRectMake(totalWidth - rightPaneWidth - 3, 10, 3, 0.5)];
+    topRightCorner.backgroundColor = topCornerColor;
+    [self addSubview:topRightCorner];
+    
+    UIView *bottomLeftCorner = [[UIView alloc] initWithFrame:CGRectMake(x, totalHeight - 10.5, 3, 0.5)];
+    bottomLeftCorner.backgroundColor = bottomCornerColor;
+    [self addSubview:bottomLeftCorner];
+    
+    UIView *bottomRightCorner = [[UIView alloc] initWithFrame:CGRectMake(totalWidth - rightPaneWidth - 3, totalHeight - 10.5, 3, 0.5)];
+    bottomRightCorner.backgroundColor = bottomCornerColor;
+    [self addSubview:bottomRightCorner];
+    
     for (NSInteger i = 0;; i++) {
         CGFloat sectionWidth = [picker rowSizeForComponent:i].width + sectionExceedWidth;
 
