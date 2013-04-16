@@ -4,9 +4,9 @@ Pod::Spec.new do |s|
   s.platform = :ios
   s.license  = ''
   s.summary  = 'Inexika-Custom-Controls'
-  s.homepage = 'https://github.com/Inexika/Inexika-Custom-Controls'
+  s.homepage = 'https://github.com/Whirlwind/Inexika-Custom-Controls'
   s.author   = { 'Leonty Derigalzov' => 'leontyd@gmail.com' }
-  s.source   = { :git => 'git://github.com/Inexika/Inexika-Custom-Controls.git', :tag=>'v1.0' }
+  s.source   = { :git => 'git://github.com/Whirlwind/Inexika-Custom-Controls.git', :tag=>'v1.0' }
 
   s.description  = 'a UIView subclass that customizes the appearance of UIPickerView and UIDatePicker views.'
 
